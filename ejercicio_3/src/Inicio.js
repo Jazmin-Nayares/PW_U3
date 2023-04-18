@@ -7,6 +7,7 @@ import Blog_inicial from './Blog_inicial'
 import Blog_1 from './Blog_1'
 import Blog_2 from './Blog_2'
 import Blog_3 from './Blog_3'
+import Footer from './Footer'
 
 export default function Inicio() {
   return (
@@ -21,6 +22,7 @@ export default function Inicio() {
             <Blog_2/>
             <Blog_3/>
         </div>
+        <Footer/>
 
     </div>
   )
