@@ -18,6 +18,6 @@ export default function Inicio() {
       {/* <a href={`/datos/ $id`} class='btn btn-primary'>Buscar</a> */}
     </form>
     </div>  
-    </>
+    </> 
   )
 }
