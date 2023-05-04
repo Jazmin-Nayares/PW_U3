@@ -26,7 +26,7 @@ export default function Inicio() {
             return(
             <div class="mb-4">
               <div class="small text-muted">{blog.id}</div>
-              <a class="link-dark" href="#!"><h3>{blog.title}</h3></a>
+              <a class="link-dark" href={'/blog/'+ blog.id}><h3>{blog.title}</h3></a>
             </div>
             )
             /*<>

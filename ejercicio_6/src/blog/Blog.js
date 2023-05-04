@@ -6,6 +6,7 @@ export default function Blog() {
   const { id } = useParams(); // Para leer el id pasado en la ruta
   const [blogPost, setBlogPost] = useState(null); // Estado para guardar el blog buscado
   const [blogComments, setBlogComments] = useState(null); // Estado para guardar los comentarios
+  const [autor,setAutor] = useState(null);
 
   //ESTE ES EL HOOK useEffect PARA OBTENER INFO DE UN BLOG
   useEffect(() => {
@@ -24,7 +25,6 @@ export default function Blog() {
   }, [id]); // Buscar blog cuando el id sea diferente
 
 
-
   //ESTE ES EL HOOK useEffect PARA OBTENER COMENTARIOS DE ESTE BLOG
   useEffect(() => {
     // Definicion de la funcion que busca el post usando Axios
@@ -41,9 +41,26 @@ export default function Blog() {
     buscaBlogComments(); // Llamar la funcion para que se ejecute
   }, [id]); // Buscar los comentarios cuando el id sea diferente
 
-  if (!blogPost) {
-    return <div>Cargando...</div>; // Mostrar mensaje cargando 
-  }
+
+  //ESTE ES EL HOOK useEffect PARA OBTENER INFO DE UN BLOG
+  useEffect(() => {
+    // Definicion de la funcion que busca el post usando Axios
+    const buscaAutor = async () => {
+      try {
+        const response = await axios.get(
+          `https://jsonplaceholder.typicode.com/users/${id}`
+        );
+        setAutor(response.data); 
+      } catch (error) {
+        console.error("Error al buscar el autor:", error);
+      }
+    };
+    buscaAutor();
+  }, [id]); 
+
+if (!blogPost || !blogComments || !autor) {
+  return <div>Cargando...</div>; // Mostrar mensaje cargando 
+}
 
   return (
     <section class="py-5">
@@ -57,8 +74,8 @@ export default function Blog() {
                 alt="..."
               />
               <div class="ms-3">
-                 <div class="fw-bold">Valerie Luna</div>  {/*//Cambiar  por user.username */}
-                <div class="text-muted">News, Business</div> {/*//Cambiar por user.company.name */}
+                 <div class="fw-bold">{autor.name}</div>  {/*//Cambiar  por user.username */}
+                <div class="text-muted">{autor.company.name}</div> {/*//Cambiar por user.company.name */}
               </div>
             </div>
           </div>
