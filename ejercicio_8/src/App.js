@@ -29,9 +29,14 @@ function App() {
   //con el ! se niega por lo que la declaracion dice que si no hay nada en el elementos lista entonces muestre el siguiente mensaje.
   return (
     <div className="App">
-      <ul class="list-group">
+      <ul className="list-group">
         {elementos_lista.map((elemento) => (
-          <li class="list-group-item">{elemento.title}</li>    
+          //el elemento key nos ayuda a poder tener un elemento que sea unico cuando se generen los elementos de la lista.
+          <li key={elemento.id} className={"list-group-item " + 
+            (elemento.completed ? 'list-group-item-success' : 'list-group-item-danger')
+            //Con el signo de interrogacion se puede aplicar un if corto en donde lo que esta antes de los dos puntos es verdadero y despues de esto es falso
+          }>  
+          {elemento.title}</li>    
         ))}
         {/* <li class="list-group-item list-group-item-success">A simple success list group item</li>    
         <li class="list-group-item list-group-item-danger">A simple secondary list group item</li> */}
